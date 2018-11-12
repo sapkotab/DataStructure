@@ -1,0 +1,74 @@
+*******************************************************
+*  Name      :    Bhuwan Sapkota
+*  Student ID:   101101219
+*  Class     :  CSC 2421
+*  HW#       :  2
+*  Due Date  :  Feb. 2, 201
+*******************************************************
+
+A run-time asymptotic analysis
+
+1)insert function
+
+        assert(size( ) < CAPACITY);     one comparision = 1
+        if (!contain(entry))            compare all data = O(n)
+        {
+            data[used] = entry;         one assignment = 1
+            ++used;                     one increment = 1
+        }
+
+it use the contain function which go through whole data to check.
+so, essencially insert function goes through whole data to make sure the entry is not there.
+if it is not there it will add that in the object data.
+
+so worse case big O for this is O(n).
+best case is the entry is found on exiting data in first place means O(1).
+
+2) print function
+
+        for (size_type i =0; i< used; ++i)      loop through all data = 0(n)
+        {
+            cout << data[i] << " ";
+        }
+        cout << endl;
+
+it goes to each data and print it
+so there is no best case or worse case. it is constant and equal to O(n).
+
+3) overloaded + operator
+    which essentially used overloaded += operator twice.
+    so,
+    Big O worse case senario for +=
+
+        assert(size( ) + addend.size( ) <= CAPACITY);       <--constant addition and comparition
+        for (size_type i = 0; i < addend.size(); ++i)       <--go throught n times
+        {
+            insert(addend.data[i]);                         <-- go through n^2 times
+        }
+    so worse case is O(n^2) and two time of this is still O(n^2)
+    best case is both loop ileterate only once each means O(1)
+
+4) overloaded - operator
+    which  uses overloaded += and -= operators.
+    we already know += has worse case O(n^2)
+
+    for -= operator
+        for (size_type i = 0; i < subtrahend.size(); ++i)   <-- go through n times
+        {
+            value_type tempVar = subtrahend.data[i];        <-- one assignment
+            if (contain(subtrahend.data[i]))                <-- contain and erase  go through n^2
+            erase(tempVar);
+        }
+    so worse case is O(n^2)
+    best case the all loop ileterate only once  O(1)
+
+so worse case is two time of  O(n^2) is O(n^2)
+best case is both loop ileterate only once each means O(1)
+
+
+SUMMARY
+FUNCTIONS       WORSE CASE      BEST CASE
+insert          O(n)            O(1)
+print           O(n)            O(1)
++ operator      O(n^2)          O(1)
+- operator      O(n^2)          O(1)
